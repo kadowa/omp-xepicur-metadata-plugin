@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filterConfig SYSTEM "../../../../lib/pkp/dtd/filterConfig.dtd">
+
+<!--
+  * filterConfig.xml
+  *
+  * Copyright (c) 2015 Heidelberg University
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Filter Configuration.
+  -->
+<filterConfig>
+	<filterGroups>
+		<!-- epicur 1.0 publication format adapters -->
+		<filterGroup
+			symbolic="publicationFormat=>epc10"
+			displayName="plugins.metadata.epc10.publicationFormatAdapter.displayName"
+			description="plugins.metadata.epc10.publicationFormatAdapter.description"
+			inputType="class::classes.publicationFormat.PublicationFormat"
+			outputType="metadata::plugins.metadata.epc10.schema.Epc10Schema(PUBLICATION_FORMAT)" />
+	</filterGroups>
+	<filters>
+		<!-- epicur 1.0 publication format adapters -->
+		<filter
+			inGroup="publicationFormat=>epc10"
+			class="plugins.metadata.epc10.filter.Epc10SchemaPublicationFormatAdapter"
+			isTemplate="0" />
+	</filters>
+</filterConfig>
