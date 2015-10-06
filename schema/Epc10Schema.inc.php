@@ -27,6 +27,11 @@ class Epc10Schema extends MetadataSchema {
 				$classname,
 				$appSpecificAssocType
 		);
+		
+		$this->addProperty('administrative_data/delivery/update_status[@type="urn_new"]', METADATA_PROPERTY_TYPE_STRING, false, METADATA_PROPERTY_CARDINALITY_MANY);
+		$this->addProperty('record/identifier[@scheme="urn:nbn:de"]', METADATA_PROPERTY_TYPE_STRING, false, METADATA_PROPERTY_CARDINALITY_MANY);
+		$this->addProperty('record/resource/identifier[@scheme="url", @type="frontpage", @role="primary"]', METADATA_PROPERTY_TYPE_STRING, false, METADATA_PROPERTY_CARDINALITY_MANY);
+		$this->addProperty('record/resource/format[@scheme="imt"]', METADATA_PROPERTY_TYPE_STRING, false, METADATA_PROPERTY_CARDINALITY_MANY);
 	}
 }
 ?>

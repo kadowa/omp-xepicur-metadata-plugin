@@ -72,6 +72,20 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$press = $oaiDao->getPress($monograph->getPressId());
 		
 		$description = $this->instantiateMetadataDescription();
+		
+		// Update status
+		// Is communicated via an attribute, so property value is empty
+		$description->addStatement('administrative_data/delivery/update_status[@type="urn_new"]', "");
+		
+		// URN
+		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', "my:urn");
+		
+		// URL
+		$url = Request::url($press->getPath(), 'catalog', 'download', array($monograph->getId()));
+		$description->addStatement('record/resource/identifier[@scheme="url", @type="frontpage", @role="primary"]',$url);
+		
+		// URL Mime type
+		$description->addStatement('record/resource/format[@scheme="imt"]', "text/html");
 
  		return $description;
 	}

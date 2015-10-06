@@ -53,23 +53,13 @@ class Epc10DescriptionXmlFilter extends PersistableFilter {
 		$doc =& XMLCustomWriter::createDocument();
 
 		// Create the root element.
-		$root =& XMLCustomWriter::createElement($doc, 'xMetaDiss:xMetaDiss');
-
+		$root =& XMLCustomWriter::createElement($doc, 'epicur');
+		
 		// Add the XML namespace and schema.
-		XMLCustomWriter::setAttribute($root, 'xmlns:xMetaDiss', 'http://www.d-nb.de/standards/xmetadissplus/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:cc', 'http://www.d-nb.de/standards/cc/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:dc', 'http://purl.org/dc/elements/1.1/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:dcmitype', 'http://purl.org/dc/dcmitype');
-		XMLCustomWriter::setAttribute($root, 'xmlns:dcterms', 'http://purl.org/dc/terms/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:ddb', 'http://www.d-nb.de/standards/ddb/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:doi', 'http://www.d-nb.de/standards/doi/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:hdl', 'http://www.d-nb.de/standards/hdl/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:pc', 'http://www.d-nb.de/standards/pc/');
-		XMLCustomWriter::setAttribute($root, 'xmlns', 'http://www.d-nb.de/standards/subject/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:thesis', 'http://www.ndltd.org/standards/metadata/etdms/1.0/');
-		XMLCustomWriter::setAttribute($root, 'xmlns:urn', 'http://www.d-nb.de/standards/urn/');
+		XMLCustomWriter::setAttribute($root, 'xmlns:epicur', 'urn:nbn:de:1111-2004033116');
+		XMLCustomWriter::setAttribute($root, 'xmlns', 'urn:nbn:de:1111-2004033116');
 		XMLCustomWriter::setAttribute($root, 'xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'http://www.d-nb.de/standards/xmetadissplus/ http://www.d-nb.de/standards/xmetadissplus/xmetadissplus.xsd');
+		XMLCustomWriter::setAttribute($root, 'xsi:schemaLocation', 'urn:nbn:de:1111-2004033116 http://www.persistent-identifier.de/xepicur/version1.0/xepicur.xsd');
 		
 		// Prepare the XMDP document hierarchy from the XMDP MetadataDescription instance.
 		$documentHierarchy =& $this->_buildDocumentHierarchy($doc, $root, $input);
