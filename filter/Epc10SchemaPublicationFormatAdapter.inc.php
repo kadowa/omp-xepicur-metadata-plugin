@@ -77,8 +77,14 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Is communicated via an attribute, so property value is empty
 		$description->addStatement('administrative_data/delivery/update_status[@type="urn_new"]', "");
 		
+		
+		$urn = "";
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+		if ( array_key_exists('URNPubIdPlugin', $pubIdPlugins) ) {
+			$urn = $pubIdPlugins['URNPubIdPlugin']->getPubId($publicationFormat);
+		}
 		// URN
-		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', "my:urn");
+		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', $urn);
 		
 		// URL
 		$url = Request::url($press->getPath(), 'catalog', 'download', array($monograph->getId()));
