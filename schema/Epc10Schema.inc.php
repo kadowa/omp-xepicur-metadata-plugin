@@ -19,7 +19,7 @@ class Epc10Schema extends MetadataSchema {
 	 * Constructor
 	 * @param $appSpecificAssocType integer
 	 */
-	function Epc10Schema($appSpecificAssocType = ASSOC_TYPE_PUBLICATION_FORMAT, $classname = 'plugins.metadata.epc10.schema.Epc10Schema') {
+	function Epc10Schema($appSpecificAssocType = ASSOC_TYPE_MONOGRAPH, $classname = 'plugins.metadata.epc10.schema.Epc10Schema') {
 		// Configure the meta-data schema.
 		parent::MetadataSchema(
 				'epc-1.0',

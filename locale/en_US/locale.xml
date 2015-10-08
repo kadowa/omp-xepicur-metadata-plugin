@@ -11,8 +11,8 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.metadata.epc10.publicationFormatAdapter.displayName">Epicur 1.0 Publication Format Adapter</message>
-	<message key="plugins.metadata.epc10.publicationFormatAdapter.description">Extracts meta-data from publication format.</message>
+	<message key="plugins.metadata.epc10.monographAdapter.displayName">Epicur 1.0 Monograph Adapter</message>
+	<message key="plugins.metadata.epc10.monographAdapter.description">Extracts meta-data from monograph.</message>
 	<message key="plugins.metadata.epc10.displayName">Epicur 1.0</message>
 	<message key="plugins.metadata.epc10.description">Contributes Epicur 1.0 schemas and application adapters.</message>
 </locale>

@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @file plugins/metadata/dc11/filter/Epc10SchemaPublicationFormatAdapter.inc.php
+ * @file plugins/metadata/dc11/filter/Epc10SchemaMonographAdapter.inc.php
  *
  * Copyright (c) 2015 Heidelberg University
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class Epc10SchemaPublicationFormatAdapter
+ * @class Epc10SchemaMonographAdapter
  * @ingroup plugins_metadata_epc10_filter
- * @see PublicationFormat
+ * @see Monograph
  *
  * @brief Adapter that injects/extracts XMetaDissPlus schema compliant meta-data
- * into/from a PublicationFormat object.
+ * into/from a monograph object.
  */
 
 
 import('lib.pkp.classes.metadata.MetadataDataObjectAdapter');
 
-class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
+class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 	/**
 	 * Constructor
 	 * @param $filterGroup FilterGroup
 	 */
-	function Epc10SchemaPublicationFormatAdapter(&$filterGroup) {
+	function Epc10SchemaMonographAdapter(&$filterGroup) {
 		parent::MetadataDataObjectAdapter($filterGroup);
 	}
 
@@ -34,7 +34,7 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	 * @see Filter::getClassName()
 	 */
 	function getClassName() {
-		return 'plugins.metadata.epc10.filter.Epc10SchemaPublicationFormatAdapter';
+		return 'plugins.metadata.epc10.filter.Epc10SchemaMonographAdapter';
 	}
 
 
@@ -44,21 +44,21 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 	/**
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
 	 * @param $description MetadataDescription
-	 * @param $publicationFormat PublicationFormat
+	 * @param $monograph Monograph
 	 * @param $authorClassName string the application specific author class name
 	 */
-	function &injectMetadataIntoDataObject(&$description, &$publicationFormat, $authorClassName) {
+	function &injectMetadataIntoDataObject(&$description, &$monograph, $authorClassName) {
 		// Not implemented
 		assert(false);
 	}
 
 	/**
 	 * @see MetadataDataObjectAdapter::extractMetadataFromDataObject()
-	 * @param $publicationFormat PublicationFormat
+	 * @param $monograph Monograph
 	 * @return MetadataDescription
 	 */
-	function extractMetadataFromDataObject($publicationFormat) {
-		assert(is_a($publicationFormat, 'PublicationFormat'));
+	function extractMetadataFromDataObject($monograph) {
+		assert(is_a($monograph, 'Monograph'));
 
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON);
 
@@ -66,9 +66,10 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		$oaiDao = DAORegistry::getDAO('OAIDAO'); /* @var $oaiDao OAIDAO */
 		$publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
-		$monograph = $publishedMonographDao->getById($publicationFormat->getMonographId());
-		$chapters = $chapterDao->getChapters($monograph->getId());
-		$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
+		
+		$monograph = $publishedMonographDao->getById($monograph->getId());
+		//$chapters = $chapterDao->getChapters($monograph->getId());
+		//$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$press = $oaiDao->getPress($monograph->getPressId());
 		
 		$description = $this->instantiateMetadataDescription();
@@ -77,11 +78,10 @@ class Epc10SchemaPublicationFormatAdapter extends MetadataDataObjectAdapter {
 		// Is communicated via an attribute, so property value is empty
 		$description->addStatement('administrative_data/delivery/update_status[@type="urn_new"]', "");
 		
-		
 		$urn = "";
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if ( array_key_exists('URNPubIdPlugin', $pubIdPlugins) ) {
-			$urn = $pubIdPlugins['URNPubIdPlugin']->getPubId($publicationFormat);
+			$urn = $pubIdPlugins['URNPubIdPlugin']->getPubId($monograph);
 		}
 		// URN
 		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', $urn);

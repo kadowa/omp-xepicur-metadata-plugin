@@ -11,19 +11,19 @@
   -->
 <filterConfig>
 	<filterGroups>
-		<!-- epicur 1.0 publication format adapters -->
+		<!-- epicur 1.0 monograph adapters -->
 		<filterGroup
-			symbolic="publicationFormat=>epc10"
-			displayName="plugins.metadata.epc10.publicationFormatAdapter.displayName"
-			description="plugins.metadata.epc10.publicationFormatAdapter.description"
-			inputType="class::classes.publicationFormat.PublicationFormat"
-			outputType="metadata::plugins.metadata.epc10.schema.Epc10Schema(PUBLICATION_FORMAT)" />
+			symbolic="monograph=>epc10"
+			displayName="plugins.metadata.epc10.monographAdapter.displayName"
+			description="plugins.metadata.epc10.monographAdapter.description"
+			inputType="class::classes.monograph.Monograph"
+			outputType="metadata::plugins.metadata.epc10.schema.Epc10Schema(MONOGRAPH)" />
 	</filterGroups>
 	<filters>
-		<!-- epicur 1.0 publication format adapters -->
+		<!-- epicur 1.0 monograph adapters -->
 		<filter
-			inGroup="publicationFormat=>epc10"
-			class="plugins.metadata.epc10.filter.Epc10SchemaPublicationFormatAdapter"
+			inGroup="monograph=>epc10"
+			class="plugins.metadata.epc10.filter.Epc10SchemaMonographAdapter"
 			isTemplate="0" />
 	</filters>
 </filterConfig>
