@@ -1,6 +1,6 @@
 <?php
 /**
- * @defgroup plugins_metadata_epc10_filter XMDP 2.2 Filter Plugin
+ * @defgroup plugins_metadata_epc10_filter Epicur 1.0 Filter Plugin
  */
 
 /**
@@ -10,9 +10,9 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Epc10DescriptionXmlFilter
- * @ingroup plugins_metadata_EPC10_filter
+ * @ingroup plugins_metadata_epc10_filter
  *
- * @brief Class that converts a meta-data description to an epicur 1.0 XML record.
+ * @brief Class that converts a meta-data description to an Epicur 1.0 XML record.
  */
 
 
@@ -307,14 +307,14 @@ class Epc10DescriptionXmlFilter extends PersistableFilter {
 		// and add them to regular attributes
 		$attributeOffset = strpos($value, '[@');
 		if ($attributeOffset !== false) {
-			// no static attributes
+			// no configurable attributes
 			if (count($elementPlusAttributes) < 2) {
 				$elementPlusAttributes[] = '';
 			}
 			
 			if ($attributeOffset !== 0) {
-				$value = substr($value, 0, $attributeOffset);
 				$elementPlusAttributes[1] = rtrim($elementPlusAttributes[1], ']') . ltrim(substr($value, $attributeOffset), '[');
+				$value = substr($value, 0, $attributeOffset);
 			}
 			else {
 				$elementPlusAttributes[1] = rtrim($elementPlusAttributes[1], ']') . ltrim(substr($value, $attributeOffset), '[');
