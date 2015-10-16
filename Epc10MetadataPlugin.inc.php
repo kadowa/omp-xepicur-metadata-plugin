@@ -3,11 +3,12 @@
 /**
  * @file plugins/metadata/epc10/Epc10MetadataPlugin.inc.php
  *
- * Copyright (c) 2015 Heidelberg University
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2000-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Epc10MetadataPlugin
- * @ingroup plugins_metadata_Epc10
+ * @ingroup plugins_metadata_epc10
  *
  * @brief epicur 1.0 metadata plugin
  */

@@ -4,15 +4,16 @@
 <!--
   * locale.xml
   *
-  * Copyright (c) 2015 Heidelberg University
+  * Copyright (c) 2014-2015 Simon Fraser University Library
+  * Copyright (c) 2000-2015 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the de_DE (Deutsch) locale.
   -->
 
-<locale name="de_DE" full_name="Deutsch">
+<locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.metadata.epc10.monographAdapter.displayName">Epicur 1.0 Monographie-Adapter</message>
 	<message key="plugins.metadata.epc10.monographAdapter.description">Extrahiert Metadaten für eine Monographie.</message>
 	<message key="plugins.metadata.epc10.displayName">Epicur 1.0</message>
-	<message key="plugins.metadata.epc10.description">Definiert epicur-1.0-Schema und -Adapter.</message>
+	<message key="plugins.metadata.epc10.description">Definiert Epicur-1.0-Schema und -Adapter.</message>
 </locale>
