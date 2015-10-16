@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file plugins/metadata/dc11/filter/Epc10SchemaMonographAdapter.inc.php
+ * @file plugins/metadata/epc10/filter/Epc10SchemaMonographAdapter.inc.php
  *
- * Copyright (c) 2015 Heidelberg University
+ * Copyright (c) Heidelberg University
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Epc10SchemaMonographAdapter
  * @ingroup plugins_metadata_epc10_filter
  * @see Monograph
  *
- * @brief Adapter that injects/extracts XMetaDissPlus schema compliant meta-data
+ * @brief Adapter that injects/extracts Epicur schema compliant meta-data
  * into/from a monograph object.
  */
 
@@ -68,8 +68,6 @@ class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$chapterDao = DAORegistry::getDAO('ChapterDAO');
 		
 		$monograph = $publishedMonographDao->getById($monograph->getId());
-		//$chapters = $chapterDao->getChapters($monograph->getId());
-		//$series = $oaiDao->getSeries($monograph->getSeriesId()); /* @var $series Series */
 		$press = $oaiDao->getPress($monograph->getPressId());
 		
 		$description = $this->instantiateMetadataDescription();
@@ -79,16 +77,21 @@ class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$description->addStatement('administrative_data/delivery/update_status[@type="urn_new"]', "");
 		
 		$urn = "";
+		$scheme = "";
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		if ( array_key_exists('URNDNBPubIdPlugin', $pubIdPlugins) ) {
 			$urn = $pubIdPlugins['URNDNBPubIdPlugin']->getPubId($monograph);
+			$namespaces = explode(':', $urn);
+			$numberOfNamespaces = min(sizeof($namespaces), 3);
+			$scheme = implode(":", array_slice($namespaces, 0, $numberOfNamespaces));
 		}
+		
 		// URN
-		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', $urn);
+		$description->addStatement('record/identifier', $urn . ' [@scheme="' . $scheme . '"]');
 		
 		// URL
 		$url = Request::url($press->getPath(), 'catalog', 'download', array($monograph->getId()));
-		$description->addStatement('record/resource/identifier[@scheme="url", @type="frontpage", @role="primary"]',$url);
+		$description->addStatement('record/resource/identifier[@scheme="url", @type="frontpage", @role="primary"]', $url);
 		
 		// URL Mime type
 		$description->addStatement('record/resource/format[@scheme="imt"]', "text/html");
