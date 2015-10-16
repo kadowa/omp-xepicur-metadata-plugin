@@ -90,7 +90,7 @@ class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$description->addStatement('record/identifier', $urn . ' [@scheme="' . $scheme . '"]');
 		
 		// URL
-		$url = Request::url($press->getPath(), 'catalog', 'download', array($monograph->getId()));
+		$url = Request::url($press->getPath(), 'catalog', 'book', array($monograph->getId()));
 		$description->addStatement('record/resource/identifier[@scheme="url", @type="frontpage", @role="primary"]', $url);
 		
 		// URL Mime type
