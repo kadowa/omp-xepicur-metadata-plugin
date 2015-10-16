@@ -80,8 +80,8 @@ class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		
 		$urn = "";
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-		if ( array_key_exists('URNPubIdPlugin', $pubIdPlugins) ) {
-			$urn = $pubIdPlugins['URNPubIdPlugin']->getPubId($monograph);
+		if ( array_key_exists('URNDNBPubIdPlugin', $pubIdPlugins) ) {
+			$urn = $pubIdPlugins['URNDNBPubIdPlugin']->getPubId($monograph);
 		}
 		// URN
 		$description->addStatement('record/identifier[@scheme="urn:nbn:de"]', $urn);
