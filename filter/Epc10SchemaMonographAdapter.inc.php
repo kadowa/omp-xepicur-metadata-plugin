@@ -80,7 +80,7 @@ class Epc10SchemaMonographAdapter extends MetadataDataObjectAdapter {
 		$urn = "";
 		$scheme = "";
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
-		if ( array_key_exists('URNDNBPubIdPlugin', $pubIdPlugins) ) {
+		if ( isset($pubIdPlugins) && array_key_exists('URNDNBPubIdPlugin', $pubIdPlugins) ) {
 			$urn = $pubIdPlugins['URNDNBPubIdPlugin']->getPubId($monograph);
 			$namespaces = explode(':', $urn);
 			$numberOfNamespaces = min(sizeof($namespaces), 3);
