@@ -53,13 +53,6 @@ class Epc10MetadataPlugin extends MetadataPlugin {
 	function getTemplatePath($inCore = false) {
 		return parent::getTemplatePath($inCore) . 'templates/';
 	}
-	
-	/**
-	 * @see PKPPlugin::getManagementVerbs()
-	 */
-	function getManagementVerbs() {
-		return array(array('settings', __('manager.plugins.settings')));
-	}
 }
 
 ?>
