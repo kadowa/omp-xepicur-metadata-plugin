@@ -8,7 +8,7 @@
 
 ## Installation
 
-	git clone https://github.com/ub-heidelberg/epc10 omp/plugins/metadata
+	git clone https://github.com/ub-heidelberg/epc10 /path/to/your/omp/plugins/metadata
 	php omp/tools/upgrade.php upgrade
 
 ## Bugs / Issues
