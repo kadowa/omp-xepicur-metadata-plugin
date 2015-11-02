@@ -8,12 +8,12 @@
 
 ## Installation
 
-	git clone https://github.com/ub-heidelberg/epc10 /path/to/your/omp/plugins/metadata
+	git clone https://github.com/kadowa/omp-xepicur-metadata-plugin omp/plugins/metadata/epc10
 	php omp/tools/upgrade.php upgrade
 
 ## Bugs / Issues
 
-You can report issues here: <https://github.com/ub-heidelberg/epc10/issues>
+You can report issues here: <https://github.com/kadowa/omp-xepicur-metadata-plugin/issues>
 
 ## License
 
@@ -23,6 +23,6 @@ See the [COPYING][gpl-licence] included with OMP for the terms of this license.
 
 [omp]: https://github.com/pkp/omp
 [xepicur]: http://www.persistent-identifier.de/?link=210
-[urn_dnb]: https://github.com/ub-heidelberg/urn_dnb
+[urn_dnb]: https://github.com/kadowa/omp-dnb-urn-plugin
 [dnb]: http://www.dnb.de
 [gpl-licence]: https://github.com/pkp/omp/blob/master/docs/COPYING
